@@ -24,8 +24,9 @@ public class PlayerCharacter : BaseCharacter
     void Update()
     {
         counter++;
-        if (counter > 100) {
+        if (counter > 500) {
             town.collectTaxes();
+            town.populate();
             grift();
             counter = 0;
         }
@@ -40,15 +41,32 @@ public class PlayerCharacter : BaseCharacter
     {
         public int treasuryAmount;
         public int population;
+        public double birthRate;
+        public double deathRate;
+        public int populationInflow;
+        public int populationOutflow;
         
         public RepublicTown() {
             treasuryAmount = 500;
             population = 100;
+            birthRate = 0.1;
+            deathRate = 0.05;
+            populationInflow = 10;
+            populationOutflow = 5;
         }
 
         public void collectTaxes()
         {
             treasuryAmount += population * 5;
+            Debug.Log("Current amount in treasury: " + treasuryAmount);
+        }
+
+        public void populate()
+        {
+            population += (int)(population * (birthRate - deathRate));
+            population += populationInflow;
+            population -= populationOutflow;
+            Debug.Log("Current town population: " + population);
         }
     }
 }
