@@ -282,7 +282,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\test.cs" />
+    <Compile Include="Assets\BaseCharacter.cs" />
+    <Compile Include="Assets\PlayerCharacter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

@@ -2,11 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class test : MonoBehaviour {
+public class BaseCharacter : MonoBehaviour {
+
+    public string firstName;
+    public string lastName;
+    public int age;
 
 	// Use this for initialization
 	void Start () {
-		
+        
 	}
 	
 	// Update is called once per frame
