@@ -7,6 +7,7 @@ public class PlayerCharacter : BaseCharacter
     public int personalWealth;
     RepublicTown town;
     int counter;
+    int ageCounter;
 
     // Use this for initialization
     void Start()
@@ -16,6 +17,7 @@ public class PlayerCharacter : BaseCharacter
         firstName = "Akihito";
         lastName = "Sanada";
         personalWealth = 100;
+        healthLevel = 5;
 
         town = new RepublicTown();
     }
@@ -24,12 +26,24 @@ public class PlayerCharacter : BaseCharacter
     void Update()
     {
         counter++;
-        if (counter > 500) {
+        if (counter > 500) {    //Quarterly
             town.collectTaxes();
             town.populate();
             grift();
             counter = 0;
+            ageCounter++;
         }
+        if (ageCounter == 4)
+        {
+            age++;
+            ageCounter = 0;
+            healthCheck();
+        }
+    }
+
+    public void healthCheck()
+    {
+        // health deteriorates over time
     }
 
     public void grift()
@@ -45,6 +59,8 @@ public class PlayerCharacter : BaseCharacter
         public double deathRate;
         public int populationInflow;
         public int populationOutflow;
+        
+        public Dictionary<string, Improvement> improvementList = new Dictionary<string, Improvement>();
         
         public RepublicTown() {
             treasuryAmount = 500;
