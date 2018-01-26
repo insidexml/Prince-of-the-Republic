@@ -5,5 +5,5 @@ using UnityEngine;
 public class Improvement
 {
     public int cost;
-    
+    public PlayerCharacter.RepublicTown town;
 }

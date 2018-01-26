@@ -1,9 +1,20 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerCharacter : BaseCharacter
 {
+    // Text boxes on player character information
+    public Text playerCharacterName;
+    public Text pcAge;
+    public Text pcWealth;
+
+    // Text boxes on town information
+    public Text townWealth;
+    public Text townPop;
+
+    // PC personal variables
     public int personalWealth;
     RepublicTown town;
     int counter;
@@ -20,6 +31,13 @@ public class PlayerCharacter : BaseCharacter
         healthLevel = 5;
 
         town = new RepublicTown();
+
+        playerCharacterName.text = "Player Character: " + firstName + " " + lastName;
+        pcAge.text = "Player Age: " + age;
+        pcWealth.text = "Player Wealth: " + personalWealth;
+
+        townPop.text = "Town Population: " + town.population;
+        townWealth.text = "Town Wealth: " + town.treasuryAmount;
     }
 
     // Update is called once per frame
@@ -39,6 +57,10 @@ public class PlayerCharacter : BaseCharacter
             ageCounter = 0;
             healthCheck();
         }
+        pcAge.text = "Player Age: " + age;
+        pcWealth.text = "Player Wealth: " + personalWealth;
+        townPop.text = "Town Population: " + town.population;
+        townWealth.text = "Town Wealth: " + town.treasuryAmount;
     }
 
     // Health deteriorates more rapidly over time
