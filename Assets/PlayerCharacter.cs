@@ -41,9 +41,26 @@ public class PlayerCharacter : BaseCharacter
         }
     }
 
+    // Health deteriorates more rapidly over time
     public void healthCheck()
     {
-        // health deteriorates over time
+        int healthDrop = Random.Range(0, 100);
+        if (age > 50 && age < 60)
+        {
+            if (healthDrop > 95) { healthLevel--; }
+        }
+        else if (age > 60 && age < 70)
+        {
+            if (healthDrop > 80) { healthLevel--; }
+        }
+        else if (age > 70 && age < 80)
+        {
+            if (healthDrop > 60) { healthLevel--; }
+        }
+        else if (age > 80)
+        {
+            if (healthDrop > 40) { healthLevel -= 2; }
+        }
     }
 
     public void grift()
@@ -59,10 +76,14 @@ public class PlayerCharacter : BaseCharacter
         public double deathRate;
         public int populationInflow;
         public int populationOutflow;
+        public int townApproval;
+
+        public int townLevel;
         
         public Dictionary<string, Improvement> improvementList = new Dictionary<string, Improvement>();
         
         public RepublicTown() {
+            townLevel = 0;
             treasuryAmount = 500;
             population = 100;
             birthRate = 0.1;
@@ -79,10 +100,13 @@ public class PlayerCharacter : BaseCharacter
 
         public void populate()
         {
-            population += (int)(population * (birthRate - deathRate));
-            population += populationInflow;
-            population -= populationOutflow;
-            Debug.Log("Current town population: " + population);
+            if (townLevel < 1 && population < 500)  // something to keep population growth in check?
+            {
+                population += (int)(population * (birthRate - deathRate));
+                population += populationInflow;
+                population -= populationOutflow;
+                Debug.Log("Current town population: " + population);
+            }
         }
     }
 }

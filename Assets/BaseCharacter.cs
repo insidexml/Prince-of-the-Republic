@@ -9,6 +9,11 @@ public class BaseCharacter : MonoBehaviour {
     public int age;
     public int healthLevel;
 
+    public BaseCharacter()
+    {
+
+    }
+
     public BaseCharacter(string characterType)
     {
         healthLevel = 5;
